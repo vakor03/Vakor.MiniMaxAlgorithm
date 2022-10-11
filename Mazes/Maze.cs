@@ -20,14 +20,15 @@ public class Maze
     public bool CheckCoordinatesForValid(Coordinates coordinates)
     {
         return coordinates.X >= 0 && coordinates.Y >= 0 &&
-               coordinates.X < Height && coordinates.Y < Width;
+               coordinates.X < Height && coordinates.Y < Width &&
+               this[coordinates]!=0;
     }
 
     public static Maze GenerateDefaultMaze() => new Maze(new[,]
     {
         { 1, 1, 1, 1, 1, 1, 1 },
         { 1, 1, 1, 0, 1, 1, 1 },
-        { 1, 1, 1, 0, 1, 1, 1 },
+        { 1, 1, 1, 0, 0, 0, 1 },
         { 1, 1, 1, 0, 1, 1, 1 },
         { 1, 1, 1, 1, 1, 1, 1 },
     });

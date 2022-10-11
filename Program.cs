@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using Vakor.MiniMaxAlgorithm.Games;
+using Vakor.MiniMaxAlgorithm.Mazes;
 
-Console.WriteLine("Hello, World!");
+Game game = new Game(Maze.GenerateDefaultMaze(), 1);
+game.InitNewGame();
+
+Console.WriteLine("The end");

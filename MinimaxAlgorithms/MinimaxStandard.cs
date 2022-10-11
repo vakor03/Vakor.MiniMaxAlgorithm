@@ -1,15 +1,15 @@
 ﻿namespace Vakor.MiniMaxAlgorithm.MinimaxAlgorithms;
 
-public class MinimaxStandart : IMinimax
+public class MinimaxStandard : IMinimax
 {
     private int _maxDepth = 4;
 
-    public MinimaxStandart(int maxDepth)
+    public MinimaxStandard(int maxDepth)
     {
         _maxDepth = maxDepth;
     }
 
-    public MinimaxStandart()
+    public MinimaxStandard()
     {
     }
 
