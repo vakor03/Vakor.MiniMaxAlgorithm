@@ -17,6 +17,12 @@ public class Maze
         _matrix = matrix;
     }
 
+    public bool CheckCoordinatesForValid(Coordinates coordinates)
+    {
+        return coordinates.X >= 0 && coordinates.Y >= 0 &&
+               coordinates.X < Height && coordinates.Y < Width;
+    }
+
     public static Maze GenerateDefaultMaze() => new Maze(new[,]
     {
         { 1, 1, 1, 1, 1, 1, 1 },

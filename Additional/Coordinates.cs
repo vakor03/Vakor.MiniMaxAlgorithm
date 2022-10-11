@@ -15,4 +15,19 @@ public struct Coordinates
     {
         return $"{nameof(X)}: {X}, {nameof(Y)}: {Y}";
     }
+
+    public bool Equals(Coordinates other)
+    {
+        return X == other.X && Y == other.Y;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        return obj is Coordinates other && Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(X, Y);
+    }
 }

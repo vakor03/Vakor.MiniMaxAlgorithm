@@ -1,17 +1,15 @@
-﻿using Vakor.MiniMaxAlgorithm.Additional;
+﻿namespace Vakor.MiniMaxAlgorithm.MinimaxAlgorithms;
 
-namespace Vakor.MiniMaxAlgorithm.Algorithms;
-
-public class MiniMaxAlgorithm : IAlgorithm
+public class MinimaxStandart : IMinimax
 {
     private int _maxDepth = 4;
 
-    public MiniMaxAlgorithm(int maxDepth)
+    public MinimaxStandart(int maxDepth)
     {
         _maxDepth = maxDepth;
     }
 
-    public MiniMaxAlgorithm()
+    public MinimaxStandart()
     {
     }
 
@@ -25,7 +23,7 @@ public class MiniMaxAlgorithm : IAlgorithm
         if (maximizingPlayer)
         {
             int maxEvaluation = Int32.MinValue;
-            foreach (var child in currentPosition.GetChildren())
+            foreach (var child in currentPosition.GetChildren(maximizingPlayer))
             {
                 int evaluation = Minimax(child, depth - 1, false);
                 maxEvaluation = Math.Max(maxEvaluation, evaluation);
@@ -36,7 +34,7 @@ public class MiniMaxAlgorithm : IAlgorithm
         else
         {
             int minEvaluation = Int32.MinValue;
-            foreach (var child in currentPosition.GetChildren())
+            foreach (var child in currentPosition.GetChildren(maximizingPlayer))
             {
                 int evaluation = Minimax(child, depth - 1, false);
                 minEvaluation = Math.Min(minEvaluation, evaluation);
@@ -45,11 +43,4 @@ public class MiniMaxAlgorithm : IAlgorithm
             return minEvaluation;
         }
     }
-}
-
-public class Node
-{
-    public bool GameIsOver => false;
-    public int GetEvaluation() => 1;
-    public Node[] GetChildren() => new[] { new Node() };
 }

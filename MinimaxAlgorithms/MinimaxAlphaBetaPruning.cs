@@ -1,10 +1,13 @@
-﻿using Vakor.MiniMaxAlgorithm.Additional;
+﻿namespace Vakor.MiniMaxAlgorithm.MinimaxAlgorithms;
 
-namespace Vakor.MiniMaxAlgorithm.Algorithms;
-
-public class AlphaBetaPruningMiniMax : IAlgorithm
+public class MinimaxAlphaBetaPruning : IMinimax
 {
-    public int Minimax(Node currentPosition, int depth, int alpha, int beta, bool maximizingPlayer)
+    public int Minimax(Node currentPosition, int depth, bool maximizingPlayer)
+    {
+        return Minimax(currentPosition, depth, Int32.MinValue, Int32.MaxValue, maximizingPlayer);
+    }
+
+    private int Minimax(Node currentPosition, int depth, int alpha, int beta, bool maximizingPlayer)
     {
         if (depth ==0 || currentPosition.GameIsOver)
         {
@@ -14,7 +17,7 @@ public class AlphaBetaPruningMiniMax : IAlgorithm
         if (maximizingPlayer)
         {
             int maxEvaluation = Int32.MinValue;
-            foreach (var child in currentPosition.GetChildren())
+            foreach (var child in currentPosition.GetChildren(maximizingPlayer))
             {
                 int evaluation = Minimax(child, depth - 1, alpha, beta,false);
                 maxEvaluation = Math.Max(maxEvaluation, evaluation);
@@ -29,7 +32,7 @@ public class AlphaBetaPruningMiniMax : IAlgorithm
         else
         {
             int minEvaluation = Int32.MinValue;
-            foreach (var child in currentPosition.GetChildren())
+            foreach (var child in currentPosition.GetChildren(maximizingPlayer))
             {
                 int evaluation = Minimax(child, depth - 1, alpha, beta,false);
                 minEvaluation = Math.Min(minEvaluation, evaluation);
